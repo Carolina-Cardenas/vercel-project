@@ -9,17 +9,15 @@ dotenv.config();
 
 const app = express();
 app.use("/api", userRouter);
-app.use(cors());
+// app.use(cors());
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173", // Permite solo solicitudes desde este origen
-//     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
-//     allowedHeaders: ["Content-Type", "Authorization"], // Encabezados permitidos
-//   })
-// );
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Permite solo solicitudes desde este origen
+  })
+);
 
 // const corsOptions = {
 //   origin: "http://localhost:5173",
