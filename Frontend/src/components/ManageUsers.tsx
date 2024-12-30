@@ -37,7 +37,7 @@ const UserForm: React.FC = () => {
     if (id) {
       const fetchUser = async () => {
         try {
-          const response = await axios.get<User>(`https://server-vercel-project.vercel.app/users/${id}`);
+          const response = await axios.get<User>(`https://vercel-project-server-cyan.vercel.app/users/${id}`);
           setUser(response.data);
         } catch (error) {
           
@@ -60,11 +60,11 @@ const UserForm: React.FC = () => {
     try {
       if (id) {
         // Si tenemos un ID, es una actualización
-        await axios.put(`https://server-vercel-project.vercel.app/users/${id}`, user);
+        await axios.put(`https://vercel-project-server-cyan.vercel.app/users/${id}`, user);
         alert("Usuario actualizado con éxito");
       } else {
         // Si no tenemos un ID, es una creación
-        await axios.post("https://server-vercel-project.vercel.app/users/", user);
+        await axios.post("https://vercel-project-server-cyan.vercel.app/users/", user);
         alert("Usuario creado con éxito");
       }
       navigate("/users"); // Redirigir a la lista de usuarios después de la acción
@@ -77,7 +77,7 @@ const UserForm: React.FC = () => {
   const handleDelete = async () => {
     if (id) {
       try {
-        await axios.delete(`https://server-vercel-project.vercel.app/users/${id}`);
+        await axios.delete(`https://vercel-project-server-cyan.vercel.app/users/${id}`);
         alert("Usuario eliminado con éxito");
         navigate("/users"); // Redirigir a la lista de usuarios después de la eliminación
       } catch (error) {

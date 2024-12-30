@@ -4,7 +4,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import userRouter from "./src/routes/userRoutes.js";
-
+import User from "./src/models/userModel.js";
 dotenv.config();
 
 const app = express();
@@ -42,12 +42,57 @@ mongoose
 app.get("/", (req, res) => {
   res.send("Hola, este es tu servidor backend. HELLO Mundo");
 });
+
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+//crear nuevo usuario
+// app.post("/user",
+app.post("/users", async (req, res) => {
+  console.log("Datos recibidos:", req.body);
+  try {
+    const user = new User(req.body);
+    await user.save();
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put("/users", async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.delete("/users", async (req, res) => {
+  try {
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    if (!deletedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.use("/api", userRouter);
 const PORT = process.env.PORT || 3000;
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((error) => console.log("Error connecting to MongoDB", error));
 
 // app.post("/auth", async (req, res) => {
 //   const { username, password } = req.body;
