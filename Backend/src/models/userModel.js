@@ -12,11 +12,6 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  // id: {
-  //   type: Number,
-  //   required: true,
-  //   unique: true,
-  // },
   name: {
     type: String,
     required: true,
