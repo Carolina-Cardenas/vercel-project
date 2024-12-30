@@ -17,7 +17,7 @@ app.use(
   })
 );
 app.use(userRouter);
-
+console.log("mono");
 // Conectar a MongoDB (asegúrate de tener MongoDB en ejecución)
 mongoose
   .connect(process.env.MONGO_URI)
