@@ -31,8 +31,7 @@ mongoose
 // Endpoint para autenticar usuarios
 app.get("/", (req, res) => {
   res.send(
-    "Hola, este es tu servidor backend. HELLO Mundo",
-    process.env.MONGO_URI
+    "Hola, este es tu servidor backend. HELLO Mundo" + process.env.MONGO_URI
   );
 });
 
