@@ -1,5 +1,18 @@
 {
   "files": [],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+ 
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": false,
+    "moduleResolution": "node",
+    "baseUrl": "./", 
+    "paths": {
+      "*": ["node_modules/*"]
+    },
+    "lib": ["dom", "esnext"], // Incluye 'dom' para reconocer APIs del navegador
+    "target": "esnext"
+  },
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }

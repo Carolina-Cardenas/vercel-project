@@ -4,8 +4,6 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
 
-
-
 const UserForm: React.FC = () => {
   interface User {
     username: string;
@@ -28,6 +26,8 @@ const UserForm: React.FC = () => {
     password: "",
     accessToken: "",
   });
+
+
 
   const { id } = useParams<{ id: string }>(); // Obtener el ID desde la URL (si es para actualizar)
   const navigate = useNavigate(); // Usamos useNavigate en lugar de useHistory
