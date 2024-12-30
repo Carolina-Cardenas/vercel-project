@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { User } from "../src/types/User"; // Asegúrate de que esta ruta sea correcta
+import { User } from "../types/User"; // Asegúrate de que esta ruta sea correcta
 import { Link } from "react-router-dom";
 
 
 
-   export const UsersList: React.FC = () => {
+  export const UsersList: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]); // Estado para almacenar la lista de usuarios
   const [loading, setLoading] = useState<boolean>(false); // Estado para indicar carga
   const [error, setError] = useState<string | null>(null); // Estado para manejar errores

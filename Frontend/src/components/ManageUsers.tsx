@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+
 
 
 
@@ -38,6 +40,7 @@ const UserForm: React.FC = () => {
           const response = await axios.get<User>(`https://server-vercel-project.vercel.app/users/${id}`);
           setUser(response.data);
         } catch (error) {
+          
           console.error("Error fetching user:", error);
         }
       };

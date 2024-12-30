@@ -11,6 +11,8 @@ const app = express();
 app.use("/api", userRouter);
 app.use(cors());
 
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(
 //   cors({
 //     origin: "http://localhost:5173", // Permite solo solicitudes desde este origen
@@ -19,14 +21,12 @@ app.use(cors());
 //   })
 // );
 
-app.use(express.json());
 // const corsOptions = {
 //   origin: "http://localhost:5173",
 //   credentials: true, //access-control-allow-credentials:true
 //   optionSuccessStatus: 200,
 // };
 // app.use(cors(corsOptions));
-const PORT = process.env.PORT || 3000;
 
 // Conectar a MongoDB (asegúrate de tener MongoDB en ejecución)
 mongoose
@@ -42,6 +42,12 @@ mongoose
 app.get("/", (req, res) => {
   res.send("Hola, este es tu servidor backend. HELLO Mundo");
 });
+app.use("/api", userRouter);
+const PORT = process.env.PORT || 3000;
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((error) => console.log("Error connecting to MongoDB", error));
 
 // app.post("/auth", async (req, res) => {
 //   const { username, password } = req.body;
